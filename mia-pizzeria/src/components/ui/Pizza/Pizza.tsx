@@ -1,4 +1,5 @@
 import Card from "../Card/Card";
+import Quantity from "../Quantity/Quantity";
 
 export default function Pizza({
   src,
@@ -6,12 +7,14 @@ export default function Pizza({
   price,
   ingredients,
   available,
+  id,
 }: {
   src?: string;
   name: string;
   price: number;
   ingredients: string[];
   available: boolean;
+  id: number;
 }) {
   return (
     <Card disabled={!available}>
@@ -35,6 +38,7 @@ export default function Pizza({
               </span>
             )) || "No ingredients listed"}
           </p>
+          <Quantity pizza={{ src, name, price, ingredients, available, id }} />
           {available ? null : (
             <p className="text-gray-600 mt-4">❌ Not Available</p>
           )}
