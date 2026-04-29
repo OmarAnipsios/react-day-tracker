@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { Pizza } from "../types/Pizza";
+import type { Pizza } from "../../types/Pizza";
 
 type CartState = {
   cartItems: Pizza[];

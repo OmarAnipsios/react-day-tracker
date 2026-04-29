@@ -4,7 +4,7 @@ import {
   CartDispatchContext,
   type CartAction,
 } from "./CartContext";
-import type { Pizza } from "../types/Pizza";
+import type { Pizza } from "../../types/Pizza";
 
 type CartState = {
   cartItems: Pizza[];

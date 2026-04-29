@@ -1,9 +1,19 @@
 import { useCartState } from "../../hooks/useCart";
 import Pizza from "../../components/ui/Pizza/Pizza";
 import CartPage from "../Cart/CartPage";
+import { useUser } from "../../context/User/UserContext";
 
 export function Home() {
   const { isOpenCart } = useCartState();
+  const { user, setUser, isAdmin } = useUser();
+  if (!user)
+    setUser({
+      id: "1",
+      name: "Mario Rossi",
+      email: "mario.rossi@example.com",
+      isAdminUser: isAdmin ?? true,
+    });
+
   return (
     <>
       {isOpenCart ? (
@@ -13,7 +23,7 @@ export function Home() {
           <h1 className="text-center text-4xl font-bold my-6">
             Pizzeria Bella Torino 🍕
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center p-4">
             <Pizza
               src="https://images.pexels.com/photos/12096782/pexels-photo-12096782.jpeg"
               name="Margherita"

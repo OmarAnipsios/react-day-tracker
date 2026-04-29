@@ -3,11 +3,15 @@ import { CartItem } from "./CartItem";
 import { OrderSummary } from "../../components/ui/OrderSummary/OrderSummary";
 import { EmptyCart } from "./EmptyCart";
 import type { Pizza } from "../../types/Pizza";
+import { useAdmin } from "../../hooks/useAdmin";
+import { useUser } from "../../context/User/UserContext";
 
 export default function CartPage() {
   const state = useCartState();
   const dispatch = useCartDispatch();
   const cartItems = state.cartItems;
+  const { addOrder } = useAdmin();
+  const { user } = useUser();
 
   const totalItems = cartItems.reduce(
     (total, item) => total + (item.quantity || 0),
@@ -26,7 +30,23 @@ export default function CartPage() {
   };
 
   const handleCheckout = () => {
-    console.log("Checkout clicked");
+    if (!user) {
+      alert("Devi effettuare il login per completare l'ordine");
+      return;
+    }
+
+    cartItems.forEach((item) => {
+      const orderId = `${Date.now()}-${item.id}-${Math.random().toString(36).substr(2, 9)}`;
+      addOrder({
+        ...item,
+        orderId,
+        userEmail: user.email,
+        status: "nuovo",
+      });
+    });
+
+    dispatch({ type: "IS_OPEN_CART", isOpenCart: false });
+    alert("Ordine inviato con successo!");
   };
 
   const handleContinueShopping = () => {
