@@ -1,33 +1,30 @@
 import "./App.css";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
-import { CartProvider } from "./context/Cart/CartProvider";
 import { Home } from "./pages/Home/Home";
-import { UserProvider } from "./context/User/UserContext";
-import { AdminProvider } from "./context/Admin/AdminProvider";
+import { useUser } from "./context/User/UserContext";
 import { AdminPage } from "./pages/Admin/AdminPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login";
+import CartPage from "./pages/Cart/CartPage";
 
 function App() {
+  const { user } = useUser();
   return (
-    <UserProvider>
-      <AdminProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <div className="bg-olive-100 min-h-screen">
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/admin" element={<AdminPage />} />
-              </Routes>
-              <div className="mt-16">
-                <Footer />
-              </div>
-            </div>
-          </BrowserRouter>
-        </CartProvider>
-      </AdminProvider>
-    </UserProvider>
+    <BrowserRouter>
+      <div className="bg-olive-100 min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Login />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+        <div className="mt-16">
+          <Footer />
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

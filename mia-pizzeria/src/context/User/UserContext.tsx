@@ -1,11 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  isAdminUser: boolean;
-};
+import type { User } from "../../types/User";
 
 type UserContextType = {
   user: User | null;

@@ -45,16 +45,13 @@ export default function CartPage() {
       });
     });
 
-    dispatch({ type: "IS_OPEN_CART", isOpenCart: false });
+    dispatch({ type: "CLEAR_CART" });
+
     alert("Ordine inviato con successo!");
   };
 
-  const handleContinueShopping = () => {
-    dispatch({ type: "IS_OPEN_CART", isOpenCart: false });
-  };
-
   if (cartItems.length === 0) {
-    return <EmptyCart onContinueShopping={handleContinueShopping} />;
+    return <EmptyCart />;
   }
 
   return (
@@ -91,7 +88,6 @@ export default function CartPage() {
               discount={discount}
               total={total}
               onCheckout={handleCheckout}
-              onContinueShopping={handleContinueShopping}
             />
           </div>
         </div>

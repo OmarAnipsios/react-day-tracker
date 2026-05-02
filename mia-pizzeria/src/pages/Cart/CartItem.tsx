@@ -41,7 +41,7 @@ export function CartItem({ item, isLast, onRemove }: CartItemProps) {
         {/* Bottone Rimuovi */}
         <button
           onClick={onRemove}
-          className="flex-shrink-0 p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 hover:scale-110"
+          className="flex-shrink-0 p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 hover:scale-110 hover:cursor-pointer"
           aria-label="Rimuovi dal carrello"
         >
           <svg
