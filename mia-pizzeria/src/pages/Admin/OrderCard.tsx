@@ -51,7 +51,7 @@ export function OrderCard({ order, onUpdateStatus, onDelete }: OrderCardProps) {
 
         <button
           onClick={() => onDelete(order.orderId)}
-          className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium"
+          className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium hover:cursor-pointer"
         >
           Elimina
         </button>

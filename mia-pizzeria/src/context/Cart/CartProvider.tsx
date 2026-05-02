@@ -8,12 +8,10 @@ import type { Pizza } from "../../types/Pizza";
 
 type CartState = {
   cartItems: Pizza[];
-  isOpenCart: boolean;
 };
 
 const initialState: CartState = {
   cartItems: [],
-  isOpenCart: false,
 };
 
 function cartReducer(state: CartState, action: CartAction): CartState {
@@ -48,13 +46,6 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       };
     }
 
-    case "IS_OPEN_CART": {
-      return {
-        ...state,
-        isOpenCart: action.isOpenCart,
-      };
-    }
-
     case "CLEAR_ITEMS_CART": {
       const pizza = state.cartItems.find((item) => item.id === action.pizza.id);
       if (!pizza) return state;
@@ -63,6 +54,13 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         cartItems: state.cartItems.filter(
           (item) => item.id !== action.pizza.id,
         ),
+      };
+    }
+
+    case "CLEAR_CART": {
+      return {
+        ...state,
+        cartItems: [],
       };
     }
 

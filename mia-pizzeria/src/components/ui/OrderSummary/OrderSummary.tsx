@@ -1,10 +1,11 @@
+import Button from "../Button/Button";
+
 interface OrderSummaryProps {
   subtotal: number;
   deliveryCost: number;
   discount: number;
   total: number;
   onCheckout: () => void;
-  onContinueShopping: () => void;
 }
 
 export function OrderSummary({
@@ -13,7 +14,6 @@ export function OrderSummary({
   discount,
   total,
   onCheckout,
-  onContinueShopping,
 }: OrderSummaryProps) {
   return (
     <div className="bg-white rounded-xl shadow-sm p-6 sticky top-8">
@@ -46,20 +46,13 @@ export function OrderSummary({
       </div>
 
       <div className="mt-8 space-y-3">
-        <button
+        <Button
           onClick={onCheckout}
-          className="w-full py-4 px-6 bg-white border-2 rounded-lg font-semibold text-center transition-all duration-200 hover:bg-gray-50 hover:shadow-md hover:cursor-pointer active:scale-[0.98]"
           style={{ borderColor: "#2D5A27", color: "#2D5A27" }}
         >
           Procedi al Checkout
-        </button>
-
-        <button
-          onClick={onContinueShopping}
-          className="w-full py-3 px-6 border-2 border-gray-800 text-gray-800 rounded-lg font-medium hover:bg-gray-800 hover:text-white transition-all duration-200 hover:cursor-pointer active:scale-[0.98]"
-        >
-          Continua Acquisti
-        </button>
+        </Button>
+        <Button>Continua Acquisti</Button>
       </div>
     </div>
   );

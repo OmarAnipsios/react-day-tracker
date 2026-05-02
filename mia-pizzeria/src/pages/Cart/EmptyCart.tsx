@@ -1,10 +1,12 @@
-interface EmptyCartProps {
-  onContinueShopping: () => void;
-}
+import { Link } from "react-router";
+import Button from "../../components/ui/Button/Button";
 
-export function EmptyCart({ onContinueShopping }: EmptyCartProps) {
+export function EmptyCart() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center" style={{ backgroundColor: "#F9F7F2" }}>
+    <div
+      className="min-h-[60vh] flex items-center justify-center"
+      style={{ backgroundColor: "#F9F7F2" }}
+    >
       <div className="text-center px-4">
         <div className="mb-6">
           <svg
@@ -21,14 +23,15 @@ export function EmptyCart({ onContinueShopping }: EmptyCartProps) {
             />
           </svg>
         </div>
-        <p className="text-2xl font-serif text-gray-800 mb-2">Il tuo carrello è vuoto</p>
-        <p className="text-gray-600 mb-6">Aggiungi alcune pizze deliziose per iniziare!</p>
-        <button
-          onClick={onContinueShopping}
-          className="px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-200 font-medium active:scale-[0.98]"
-        >
-          Continua Acquisti
-        </button>
+        <p className="text-2xl font-serif text-gray-800 mb-2">
+          Il tuo carrello è vuoto
+        </p>
+        <p className="text-gray-600 mb-6">
+          Aggiungi alcune pizze deliziose per iniziare!
+        </p>
+        <Link to="/">
+          <Button>Continua Acquisti</Button>
+        </Link>
       </div>
     </div>
   );
